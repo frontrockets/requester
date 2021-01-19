@@ -9,7 +9,7 @@ npm install @frontrockets/requester
 ## Usage
 
 ```jsx
-import createAbstractAction from "@frontrockets/requester";
+import Requester from "@frontrockets/requester";
 
 // Requester uses Axios under the hood, expect relevant to Axios config
 
