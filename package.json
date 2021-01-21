@@ -1,6 +1,6 @@
 {
-  "name": "requester",
-  "version": "0.0.2",
+  "name": "@frontrockets/requester",
+  "version": "0.0.3",
   "description": "Interface wrapper over Axios lib for making ajax requests",
   "main": "./src/index.js",
   "scripts": {
