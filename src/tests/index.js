@@ -1,6 +1,5 @@
-import axios from 'axios'
-
-import Requester from './'
+const axios = require('axios')
+const Requester = require('..')
 
 const mockAxiosInstance = {
   request: jest.fn(() => null),

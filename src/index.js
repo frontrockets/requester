@@ -1,12 +1,12 @@
-import axios from 'axios'
-import _ from 'lodash'
+const axios = require('axios')
+const _ = require('lodash')
 
 const defaultTransformResponse = (response) => response.data
 
 const defaultOnError = () => null
 const defaultOnBefore = () => null
 
-export default class Requester {
+class Requester {
   constructor(params = {}) {
     const {
       transformRequestData,
@@ -82,3 +82,5 @@ export default class Requester {
     return this._transformRequestData(payload)
   }
 }
+
+module.exports = Requester
