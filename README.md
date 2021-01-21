@@ -8,10 +8,10 @@ npm install @frontrockets/requester
 
 ## Usage
 
+### Requester uses Axios under the hood, expect relevant to Axios config
+
 ```jsx
 import Requester from "@frontrockets/requester";
-
-// Requester uses Axios under the hood, expect relevant to Axios config
 
 const api = new Requester({
   baseURL: process.env.REACT_APP_API,
