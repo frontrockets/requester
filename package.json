@@ -4,7 +4,7 @@
   "description": "Interface wrapper over Axios lib for making ajax requests",
   "main": "./src/index.js",
   "scripts": {
-    "lint": "prettier --check './src/*.js'",
+    "lint": "prettier --check 'src/**/*.js'",
     "test": "jest"
   },
   "repository": "git@github.com:frontrockets/requester.git",
