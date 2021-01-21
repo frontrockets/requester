@@ -1,12 +1,10 @@
-import axios from "axios";
-import _ from "lodash";
+import axios from 'axios'
+import _ from 'lodash'
 
-const defaultTransformResponse = (response) => response.data;
+const defaultTransformResponse = (response) => response.data
 
-const defaultOnError = () => null;
-const defaultOnBefore = () => null;
-
-/* eslint-disable no-underscore-dangle */
+const defaultOnError = () => null
+const defaultOnBefore = () => null
 
 export default class Requester {
   constructor(params = {}) {
@@ -17,36 +15,36 @@ export default class Requester {
       onBefore,
       onError,
       ...config
-    } = params;
+    } = params
 
-    this.onError = onError || defaultOnError;
-    this.onBefore = onBefore || defaultOnBefore;
+    this.onError = onError || defaultOnError
+    this.onBefore = onBefore || defaultOnBefore
 
-    this._root = axios.create(config);
+    this._root = axios.create(config)
 
-    this._injectHeaders = injectHeaders || _.identity;
-    this._transformRequestData = transformRequestData || _.identity;
-    this._transformResponse = transformResponse || defaultTransformResponse;
+    this._injectHeaders = injectHeaders || _.identity
+    this._transformRequestData = transformRequestData || _.identity
+    this._transformResponse = transformResponse || defaultTransformResponse
   }
 
   post(url, payload) {
-    return this._request("post", url, { data: this._data(payload) });
+    return this._request('post', url, { data: this._data(payload) })
   }
 
   patch(url, payload) {
-    return this._request("patch", url, { data: this._data(payload) });
+    return this._request('patch', url, { data: this._data(payload) })
   }
 
   get(url, payload) {
-    return this._request("get", url, { params: payload });
+    return this._request('get', url, { params: payload })
   }
 
   delete(url, payload) {
-    return this._request("delete", url, { data: this._data(payload) });
+    return this._request('delete', url, { data: this._data(payload) })
   }
 
   _request(method, url, data) {
-    this.onBefore(method, url, data);
+    this.onBefore(method, url, data)
 
     return this._root
       .request({
@@ -56,32 +54,31 @@ export default class Requester {
         headers: this._injectHeaders(),
       })
       .then((response) => {
-        let successObject;
+        let successObject
 
         try {
-          successObject = this._transformResponse(response);
+          successObject = this._transformResponse(response)
         } catch (e) {
-          successObject = defaultTransformResponse(response);
+          successObject = defaultTransformResponse(response)
         }
 
-        return successObject;
+        return successObject
       })
       .catch(({ response }) => {
         try {
-          this.onError(response);
+          this.onError(response)
         } catch (error) {
           // We output Error in order not to silently bypass it
-          // eslint-disable-next-line no-console
-          console.error(error);
+          console.error(error)
         }
 
-        const errorObject = response.data;
+        const errorObject = response.data
 
-        return Promise.reject(errorObject);
-      });
+        return Promise.reject(errorObject)
+      })
   }
 
   _data(payload) {
-    return this._transformRequestData(payload);
+    return this._transformRequestData(payload)
   }
 }
