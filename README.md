@@ -3,7 +3,7 @@ _This is part of @datarockets infrastructure_
 ## Install
 
 ```
-npm install @frontrockets/requester
+npm install frontrockets/requester
 ```
 
 ## Usage
