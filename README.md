@@ -3,7 +3,7 @@ _This is part of @datarockets infrastructure_
 ## Install
 
 ```
-npm install frontrockets/requester
+npm install @frontrockets/requester
 ```
 
 ## Usage
@@ -11,7 +11,7 @@ npm install frontrockets/requester
 ### Requester uses Axios under the hood, expect relevant to Axios config
 
 ```jsx
-import Requester from "@frontrockets/requester";
+import Requester from '@frontrockets/requester'
 
 const api = new Requester({
   baseURL: process.env.REACT_APP_API,
@@ -20,10 +20,10 @@ const api = new Requester({
     Authorization: `Bearer ${SessionToken.get()}`,
   }),
   transformResponse: (response) => response.data,
-});
+})
 
-api.get("/some-url");
-api.post("/some-url");
-api.patch("/some-url");
-api.delete("/some-url");
+api.get('/some-url')
+api.post('/some-url')
+api.patch('/some-url')
+api.delete('/some-url')
 ```
